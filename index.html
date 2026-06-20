@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Brainwave Games brings six quick-play challenge games together at games.brainwaveai.my.">
+    <meta property="og:title" content="Brainwave Games">
+    <meta property="og:description" content="Six quick-play challenge games in one place.">
+    <meta property="og:url" content="https://games.brainwaveai.my/">
+    <meta property="og:image" content="https://games.brainwaveai.my/assets/games-hero.png">
+    <title>Brainwave Games</title>
+    <link rel="preload" as="image" href="assets/games-hero.png">
+    <style>
+      :root {
+        color-scheme: dark;
+        --ink: #f8fafc;
+        --muted: #b8c6c5;
+        --panel: rgba(3, 18, 20, 0.74);
+        --panel-strong: rgba(5, 26, 27, 0.88);
+        --line: rgba(255, 255, 255, 0.16);
+        --gold: #f6c945;
+        --red: #ed3347;
+        --green: #23d18b;
+        --cyan: #40d9ff;
+        --shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        color: var(--ink);
+        background: #061414;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .page {
+        min-height: 100vh;
+        background:
+          linear-gradient(90deg, rgba(0, 11, 12, 0.96) 0%, rgba(0, 15, 17, 0.88) 32%, rgba(0, 20, 20, 0.34) 68%, rgba(0, 0, 0, 0.16) 100%),
+          linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.78) 100%),
+          url("assets/games-hero.png") center right / cover no-repeat;
+      }
+
+      .shell {
+        width: min(1180px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 24px 0;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+        text-decoration: none;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 42px;
+        height: 42px;
+        place-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 8px;
+        background: linear-gradient(145deg, var(--green), var(--cyan));
+        color: #031415;
+        font-weight: 900;
+        box-shadow: 0 14px 34px rgba(35, 209, 139, 0.24);
+      }
+
+      .brand-name {
+        display: block;
+        font-size: 1rem;
+        font-weight: 800;
+        line-height: 1.05;
+      }
+
+      .domain {
+        display: block;
+        color: var(--muted);
+        font-size: 0.78rem;
+        line-height: 1.4;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .nav a,
+      .hero-actions a,
+      .game-card a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        padding: 0 16px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 800;
+        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+      }
+
+      .nav a {
+        background: rgba(0, 0, 0, 0.22);
+        color: #dce7e5;
+        font-size: 0.9rem;
+      }
+
+      .nav a:hover,
+      .hero-actions a:hover,
+      .game-card a:hover {
+        transform: translateY(-2px);
+        border-color: rgba(255, 255, 255, 0.34);
+      }
+
+      main {
+        padding: 34px 0 42px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 0.82fr) minmax(380px, 1.18fr);
+        gap: 42px;
+        align-items: start;
+        min-height: auto;
+        padding: 56px 0 42px;
+      }
+
+      .hero-copy {
+        max-width: 650px;
+        padding-top: 148px;
+        padding-bottom: 0;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 0 20px;
+        color: #eafdfb;
+        font-size: 0.82rem;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 34px;
+        height: 3px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--green), var(--gold), var(--red));
+      }
+
+      h1 {
+        max-width: 9ch;
+        margin: 0;
+        font-size: clamp(3.5rem, 7.15vw, 6.85rem);
+        line-height: 0.88;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        max-width: 580px;
+        margin: 24px 0 0;
+        color: #d7e3df;
+        font-size: clamp(1.04rem, 1.7vw, 1.35rem);
+        line-height: 1.58;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 30px;
+      }
+
+      .primary {
+        background: linear-gradient(135deg, var(--gold), #fff0a9);
+        color: #151101;
+        box-shadow: 0 16px 36px rgba(246, 201, 69, 0.22);
+      }
+
+      .secondary {
+        background: rgba(255, 255, 255, 0.08);
+        color: #f6fbfa;
+      }
+
+      .games-panel {
+        display: grid;
+        align-content: start;
+        padding-bottom: 0;
+      }
+
+      .games-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .game-card {
+        min-height: 0;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: linear-gradient(180deg, var(--panel), var(--panel-strong));
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(18px);
+      }
+
+      .poster {
+        position: relative;
+        aspect-ratio: 1 / 0.78;
+        overflow: hidden;
+        background: #061414;
+      }
+
+      .poster::after {
+        position: absolute;
+        inset: 0;
+        content: "";
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0) 42%, rgba(2, 12, 13, 0.78) 100%);
+      }
+
+      .poster img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: center 20%;
+        transition: transform 260ms ease;
+      }
+
+      .game-card:hover .poster img {
+        transform: scale(1.04);
+      }
+
+      .status {
+        position: absolute;
+        right: 14px;
+        bottom: 14px;
+        z-index: 1;
+        padding: 6px 9px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 999px;
+        color: #dff7f0;
+        background: rgba(0, 0, 0, 0.54);
+        font-size: 0.72rem;
+        font-weight: 900;
+        white-space: nowrap;
+      }
+
+      .game-body {
+        padding: 18px;
+      }
+
+      .game-card h2 {
+        margin: 0 0 8px;
+        font-size: 1.12rem;
+        line-height: 1.18;
+        letter-spacing: 0;
+      }
+
+      .game-card p {
+        min-height: 44px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.48;
+      }
+
+      .game-card a {
+        width: 100%;
+        margin-top: 18px;
+        background: rgba(255, 255, 255, 0.08);
+        color: #f9fffd;
+        font-size: 0.9rem;
+      }
+
+      .strip {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        overflow: hidden;
+        margin-top: 22px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--line);
+      }
+
+      .strip-item {
+        min-height: 86px;
+        padding: 18px;
+        background: rgba(3, 18, 20, 0.8);
+      }
+
+      .strip-item strong {
+        display: block;
+        font-size: 1.5rem;
+        line-height: 1;
+      }
+
+      .strip-item span {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      footer {
+        padding: 22px 0 34px;
+        color: #9eafad;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 980px) {
+        .page {
+          background:
+            linear-gradient(180deg, rgba(0, 11, 12, 0.95) 0%, rgba(0, 16, 16, 0.86) 42%, rgba(0, 0, 0, 0.78) 100%),
+            url("assets/games-hero.png") top right 18% / auto 58vh no-repeat,
+            #061414;
+        }
+
+        .hero {
+          grid-template-columns: 1fr;
+          gap: 18px;
+          min-height: auto;
+          padding-top: 28vh;
+          padding-bottom: 42px;
+        }
+
+        .hero-copy,
+        .games-panel {
+          padding-top: 0;
+          padding-bottom: 0;
+        }
+
+        h1 {
+          max-width: 9ch;
+          font-size: clamp(3rem, 15vw, 5.8rem);
+        }
+      }
+
+      @media (max-width: 680px) {
+        .shell {
+          width: min(100% - 28px, 1180px);
+        }
+
+        header {
+          align-items: flex-start;
+          padding-top: 18px;
+        }
+
+        .nav {
+          display: none;
+        }
+
+        main {
+          padding-top: 18px;
+        }
+
+        .hero {
+          padding-top: 24vh;
+        }
+
+        .strip {
+          display: none;
+        }
+
+        .games-grid,
+        .strip {
+          grid-template-columns: 1fr;
+        }
+
+        .game-card {
+          min-height: 0;
+        }
+
+        .poster {
+          aspect-ratio: 1 / 0.82;
+        }
+
+        .game-card p {
+          min-height: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="shell">
+        <a class="brand" href="https://games.brainwaveai.my/" aria-label="Brainwave Games home">
+          <span class="brand-mark">B</span>
+          <span>
+            <span class="brand-name">Brainwave Games</span>
+            <span class="domain">games.brainwaveai.my</span>
+          </span>
+        </a>
+        <nav class="nav" aria-label="Page navigation">
+          <a href="#games">Games</a>
+          <a href="https://games.brainwaveai.my/">Live Domain</a>
+        </nav>
+      </header>
+
+      <main class="shell">
+        <section class="hero" aria-labelledby="page-title">
+          <div class="hero-copy">
+            <p class="eyebrow">Six quick-play games</p>
+            <h1 id="page-title">Brainwave Games</h1>
+            <p class="lead">Pick a challenge, make your call, and jump into fast contest-style games built for football fans, lucky draws, rankings, and champion predictions.</p>
+            <div class="hero-actions" aria-label="Primary actions">
+              <a class="primary" href="#games">Explore Games</a>
+              <a class="secondary" href="https://games.brainwaveai.my/">games.brainwaveai.my</a>
+            </div>
+            <div class="strip" aria-label="Game hub stats">
+              <div class="strip-item">
+                <strong>6</strong>
+                <span>Games ready on the hub</span>
+              </div>
+              <div class="strip-item">
+                <strong>32</strong>
+                <span>World Cup challenge format</span>
+              </div>
+              <div class="strip-item">
+                <strong>1</strong>
+                <span>Simple destination for players</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="games-panel" id="games">
+            <div class="games-grid">
+              <article class="game-card cup">
+                <div class="poster">
+                  <img src="assets/game-posters/world-cup-last-32-challenge.png" alt="World Cup Last 32 Challenge poster" loading="lazy">
+                  <span class="status">Football</span>
+                </div>
+                <div class="game-body">
+                  <h2>World Cup Last 32 Challenge</h2>
+                  <p>Choose your route through the final 32 and see how far your instincts go.</p>
+                  <a href="#">Play Challenge</a>
+                </div>
+              </article>
+
+              <article class="game-card fortune">
+                <div class="poster">
+                  <img src="assets/game-posters/uncle-fortune-lucky-number-quest.png" alt="Uncle Fortune Lucky Number Quest poster" loading="lazy">
+                  <span class="status">Lucky draw</span>
+                </div>
+                <div class="game-body">
+                  <h2>Uncle Fortune Lucky Number Quest</h2>
+                  <p>Pick lucky numbers and chase the kind of surprise only Uncle Fortune would approve.</p>
+                  <a href="#">Start Quest</a>
+                </div>
+              </article>
+
+              <article class="game-card spin">
+                <div class="poster">
+                  <img src="assets/game-posters/brainwave-spin-battle.png" alt="Brainwave Spin Battle poster" loading="lazy">
+                  <span class="status">Spin</span>
+                </div>
+                <div class="game-body">
+                  <h2>Brainwave Spin Battle</h2>
+                  <p>Spin, clash, and compare outcomes in a quick-fire battle of chance.</p>
+                  <a href="#">Spin Now</a>
+                </div>
+              </article>
+
+              <article class="game-card goal">
+                <div class="poster">
+                  <img src="assets/game-posters/lucky-goal-predictor.png" alt="Lucky Goal Predictor poster" loading="lazy">
+                  <span class="status">Predictor</span>
+                </div>
+                <div class="game-body">
+                  <h2>Lucky Goal Predictor</h2>
+                  <p>Predict the moment, the score, or the spark that turns a match.</p>
+                  <a href="#">Make Prediction</a>
+                </div>
+              </article>
+
+              <article class="game-card packet">
+                <div class="poster">
+                  <img src="assets/game-posters/red-packet-ranking-rush.png" alt="Red Packet Ranking Rush poster" loading="lazy">
+                  <span class="status">Ranking</span>
+                </div>
+                <div class="game-body">
+                  <h2>Red Packet Ranking Rush</h2>
+                  <p>Race up the ranking board with red packet picks and fast results.</p>
+                  <a href="#">View Ranking</a>
+                </div>
+              </article>
+
+              <article class="game-card arena">
+                <div class="poster">
+                  <img src="assets/game-posters/champion-guess-arena.png" alt="Champion Guess Arena poster" loading="lazy">
+                  <span class="status">Arena</span>
+                </div>
+                <div class="game-body">
+                  <h2>Champion Guess Arena</h2>
+                  <p>Back your champion and test your read against the rest of the arena.</p>
+                  <a href="#">Enter Arena</a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="shell">
+        Brainwave Games is available at games.brainwaveai.my.
+      </footer>
+    </div>
+  </body>
+</html>
