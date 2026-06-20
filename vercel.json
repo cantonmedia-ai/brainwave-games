@@ -51,7 +51,7 @@
     },
     {
       "source": "/admin",
-      "destination": "https://laozhaopai-32-worldcup-game.vercel.app/admin/"
+      "destination": "https://laozhaopai-32-worldcup-game.vercel.app/admin/games"
     },
     {
       "source": "/admin/:path*",
