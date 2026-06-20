@@ -50,6 +50,10 @@
       "destination": "https://laozhaopai-32-worldcup-game.vercel.app/auth/:path*"
     },
     {
+      "source": "/admin",
+      "destination": "https://laozhaopai-32-worldcup-game.vercel.app/admin/"
+    },
+    {
       "source": "/admin/:path*",
       "destination": "https://laozhaopai-32-worldcup-game.vercel.app/admin/:path*"
     },
