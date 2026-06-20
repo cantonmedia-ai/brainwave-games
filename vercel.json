@@ -1,5 +1,63 @@
 {
   "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/fifa-last-32",
+      "destination": "https://laozhaopai-32-worldcup-game.vercel.app/fifa-last-32"
+    },
+    {
+      "source": "/game",
+      "destination": "https://laozhaopai-32-worldcup-game.vercel.app/game"
+    },
+    {
+      "source": "/predict",
+      "destination": "https://laozhaopai-32-worldcup-game.vercel.app/predict"
+    },
+    {
+      "source": "/leaderboard",
+      "destination": "https://laozhaopai-32-worldcup-game.vercel.app/leaderboard"
+    },
+    {
+      "source": "/squad",
+      "destination": "https://laozhaopai-32-worldcup-game.vercel.app/squad"
+    },
+    {
+      "source": "/rewards",
+      "destination": "https://laozhaopai-32-worldcup-game.vercel.app/rewards"
+    },
+    {
+      "source": "/rules",
+      "destination": "https://laozhaopai-32-worldcup-game.vercel.app/rules"
+    },
+    {
+      "source": "/results",
+      "destination": "https://laozhaopai-32-worldcup-game.vercel.app/results"
+    },
+    {
+      "source": "/profile",
+      "destination": "https://laozhaopai-32-worldcup-game.vercel.app/profile"
+    },
+    {
+      "source": "/login",
+      "destination": "https://laozhaopai-32-worldcup-game.vercel.app/login"
+    },
+    {
+      "source": "/setup-profile",
+      "destination": "https://laozhaopai-32-worldcup-game.vercel.app/setup-profile"
+    },
+    {
+      "source": "/auth/:path*",
+      "destination": "https://laozhaopai-32-worldcup-game.vercel.app/auth/:path*"
+    },
+    {
+      "source": "/admin/:path*",
+      "destination": "https://laozhaopai-32-worldcup-game.vercel.app/admin/:path*"
+    },
+    {
+      "source": "/_next/:path*",
+      "destination": "https://laozhaopai-32-worldcup-game.vercel.app/_next/:path*"
+    }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",
