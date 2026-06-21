@@ -46,6 +46,10 @@
       "destination": "https://laozhaopai-32-worldcup-game.vercel.app/setup-profile"
     },
     {
+      "source": "/profile-setup",
+      "destination": "https://laozhaopai-32-worldcup-game.vercel.app/profile-setup"
+    },
+    {
       "source": "/auth/:path*",
       "destination": "https://laozhaopai-32-worldcup-game.vercel.app/auth/:path*"
     },
