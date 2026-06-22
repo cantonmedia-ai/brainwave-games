@@ -14,6 +14,10 @@
       "destination": "https://laozhaopai-32-worldcup-game.vercel.app/game"
     },
     {
+      "source": "/road-to-champion",
+      "destination": "https://laozhaopai-32-worldcup-game.vercel.app/road-to-champion"
+    },
+    {
       "source": "/predict",
       "destination": "https://laozhaopai-32-worldcup-game.vercel.app/predict"
     },
