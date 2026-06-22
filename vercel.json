@@ -2,6 +2,10 @@
   "cleanUrls": true,
   "rewrites": [
     {
+      "source": "/fifa",
+      "destination": "https://laozhaopai-32-worldcup-game.vercel.app/fifa"
+    },
+    {
       "source": "/fifa-last-32",
       "destination": "https://laozhaopai-32-worldcup-game.vercel.app/fifa-last-32"
     },
@@ -16,6 +20,10 @@
     {
       "source": "/leaderboard",
       "destination": "https://laozhaopai-32-worldcup-game.vercel.app/leaderboard"
+    },
+    {
+      "source": "/referral",
+      "destination": "https://laozhaopai-32-worldcup-game.vercel.app/referral"
     },
     {
       "source": "/squad",
