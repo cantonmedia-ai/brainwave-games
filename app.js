@@ -832,6 +832,7 @@ function hostRoundContent(p) {
         <h2>Voting in progress</h2>
         <p>Host controls are available below.</p>
         <div class="vote-progress">${votes.length} / ${eligibleVoteCount(round)} voted</div>
+        <button class="primary reveal-now" onclick="revealRound()">Reveal Now</button>
       </section>
       ${leaderboardCompact()}
       ${deviceControls(p)}

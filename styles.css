@@ -348,6 +348,10 @@ label {
   font-weight: 950;
 }
 
+.reveal-now {
+  margin-top: 16px;
+}
+
 .story-choice, .story-card {
   width: 100%;
   display: block;
