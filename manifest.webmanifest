@@ -1,0 +1,9 @@
+{
+  "name": "Truth or Bluff",
+  "short_name": "Truth or Bluff",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#F8F5F0",
+  "theme_color": "#D4A055",
+  "orientation": "any"
+}

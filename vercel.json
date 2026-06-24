@@ -1,6 +1,25 @@
 {
+  "framework": null,
+  "buildCommand": null,
+  "outputDirectory": ".",
   "cleanUrls": true,
   "rewrites": [
+    {
+      "source": "/bluffgame",
+      "destination": "/bluffgame.html"
+    },
+    {
+      "source": "/bluffgame/host",
+      "destination": "/bluffgame/host.html"
+    },
+    {
+      "source": "/bluffgame/display",
+      "destination": "/bluffgame/display.html"
+    },
+    {
+      "source": "/bluffgame/memory",
+      "destination": "/bluffgame/memory.html"
+    },
     {
       "source": "/fifa",
       "destination": "https://laozhaopai-32-worldcup-game.vercel.app/fifa"
