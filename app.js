@@ -155,17 +155,19 @@ async function pushRemoteTable() {
   }
   remoteWriteInFlight = true;
   try {
+    let outgoingTable = JSON.parse(JSON.stringify(state.table));
     const remoteRow = await fetchRemoteTable().catch(() => null);
     if (remoteRow?.state) {
-      state.table = mergeTables(normalizeTable(remoteRow.state), normalizeTable(state.table));
+      state.table = mergeTables(normalizeTable(remoteRow.state), normalizeTable(outgoingTable));
       state.table.updatedAt = new Date().toISOString();
       localStorage.setItem(currentStoreKey(), JSON.stringify(state.table));
+      outgoingTable = JSON.parse(JSON.stringify(state.table));
     }
     if (API_REMOTE_ENABLED) {
       const response = await fetch(`/api/table?game=${encodeURIComponent(currentRemoteTableId())}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ state: state.table })
+        body: JSON.stringify({ state: outgoingTable })
       });
       if (!response.ok) throw new Error(`API write failed: ${response.status}`);
       state.remoteStatus = "Online";
@@ -174,7 +176,7 @@ async function pushRemoteTable() {
     }
     const body = JSON.stringify({
       table_id: currentRemoteTableId(),
-      state: state.table,
+      state: outgoingTable,
       updated_at: new Date().toISOString()
     });
     const response = await fetch(supabaseUrl("?on_conflict=table_id"), {
@@ -207,6 +209,7 @@ async function waitForRemoteIdle(timeoutMs = 8000) {
 
 async function pullRemoteTable({ initial = false } = {}) {
   if (!REMOTE_ENABLED) return;
+  if (remoteWriteInFlight) return;
   try {
     const row = await fetchRemoteTable();
     if (!row) {
