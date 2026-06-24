@@ -1067,7 +1067,12 @@ async function confirmVote() {
 async function revealRound() {
   const round = currentRound();
   if (!round) return toast("No active round.");
-  const story = storyFor(round.storytellerId);
+  let story = storyFor(round.storytellerId);
+  if (!story && REMOTE_ENABLED) {
+    await pullRemoteTable({ initial: true });
+    story = storyFor(round.storytellerId);
+  }
+  if (!story) return toast("Story data is still syncing. Try reveal again.");
   const votes = votesFor(round.id);
   round.status = "revealed";
   round.revealedAt = new Date().toISOString();
